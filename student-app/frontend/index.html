@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Management Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>📚 Student Management Portal</h1>
+      <p class="subtitle">Manage your student database efficiently</p>
+    </div>
+
+    <div class="main-content">
+      <!-- Form Section -->
+      <div class="form-section">
+        <h2>➕ Add New Student</h2>
+        <form id="studentForm">
+          <input type="hidden" id="studentId">
+          <div class="form-group">
+            <input type="text" id="name" placeholder="Full Name" required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="rollNo" placeholder="Roll Number" required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="batch" placeholder="Batch (e.g., 2023)" required>
+          </div>
+          <div class="form-group">
+            <input type="text" id="course" placeholder="Course (e.g., B.Tech CSE)" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" id="contact" placeholder="Contact Number" required>
+          </div>
+          <div class="form-buttons">
+            <button type="submit" id="submitBtn">Add Student</button>
+            <button type="button" id="cancelBtn" style="display:none;">Cancel</button>
+          </div>
+        </form>
+        <div id="message" class="message"></div>
+      </div>
+
+      <!-- List Section -->
+      <div class="list-section">
+        <div class="list-header">
+          <h2>👥 Students List</h2>
+          <input type="text" id="searchBox" placeholder="🔍 Search by name or roll no...">
+        </div>
+        
+        <div class="table-responsive">
+          <table id="studentTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Roll No</th>
+                <th>Batch</th>
+                <th>Course</th>
+                <th>Contact</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <tr class="loading">
+                <td colspan="7">Loading students...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
