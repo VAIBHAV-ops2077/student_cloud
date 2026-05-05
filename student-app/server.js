@@ -1,14 +1,31 @@
 require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2/promise');
 const path = require('path');
 
 const app = express();
-app.use(cors());
+
+// ✅ CORS (only once)
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type']
+}));
+
+// ✅ Body parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// ✅ Serve frontend
 app.use(express.static(path.join(__dirname, 'frontend')));
+
+// const app = express();
+// app.use(cors());
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.static(path.join(__dirname, 'frontend')));
 
 // MySQL Connection Pool
 const pool = mysql.createPool({
