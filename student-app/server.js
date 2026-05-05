@@ -304,13 +304,12 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 3000;
 
 initDatabase().then(() => {
-  app.listen(PORT, () => {
-    console.log(`
-╔════════════════════════════════════════╗
-║   Student Management Portal Server     ║
-║   Running on http://localhost:${PORT}       ║
-╚════════════════════════════════════════╝
-    `);
+  app.listen(PORT, '0.0.0.0', () => {
+  console.log(`
+  Student Management Portal Server
+  Running on http://0.0.0.0:${PORT}
+  `);
+});
   });
 }).catch(error => {
   console.error('Failed to start server:', error);
