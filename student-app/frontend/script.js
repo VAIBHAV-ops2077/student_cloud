@@ -3,7 +3,7 @@
 // =====================
 
 // Base URL for API calls - Change this if deploying to a different server
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_BASE_URL = 'http://54.210.228.227:3000/api';
 let editingId = null;
 let allStudents = [];
 
