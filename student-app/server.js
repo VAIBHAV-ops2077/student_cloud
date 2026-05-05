@@ -317,10 +317,10 @@ initDatabase().then(() => {
 });
 
 // Graceful shutdown
-process.on('SIGINT', () => {
-  console.log('\n\nShutting down gracefully...');
-  pool.end((err) => {
-    if (err) console.error('Error closing connection pool:', err);
-    process.exit(0);
-  });
-});
+// process.on('SIGINT', () => {
+//   console.log('\n\nShutting down gracefully...');
+//   pool.end((err) => {
+//     if (err) console.error('Error closing connection pool:', err);
+//     process.exit(0);
+//   });
+// });
