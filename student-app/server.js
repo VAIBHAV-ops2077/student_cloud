@@ -67,6 +67,25 @@ const initDatabase = async () => {
         updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
       )
     `);
+    
+    // Insert sample data if table is empty
+    const [existing] = await connection.execute('SELECT COUNT(*) as count FROM students');
+    if (existing[0].count === 0) {
+      await connection.execute(
+        'INSERT INTO students (name, rollNo, batch, course, contact) VALUES (?, ?, ?, ?, ?)',
+        ['John Doe', 'CS001', '2023', 'B.Tech CSE', '9876543210']
+      );
+      await connection.execute(
+        'INSERT INTO students (name, rollNo, batch, course, contact) VALUES (?, ?, ?, ?, ?)',
+        ['Jane Smith', 'CS002', '2023', 'B.Tech CSE', '9876543211']
+      );
+      await connection.execute(
+        'INSERT INTO students (name, rollNo, batch, course, contact) VALUES (?, ?, ?, ?, ?)',
+        ['Bob Johnson', 'CS003', '2023', 'B.Tech IT', '9876543212']
+      );
+      console.log('✓ Sample data inserted');
+    }
+    
     connection.release();
     console.log('✓ Database table initialized');
   } catch (error) {

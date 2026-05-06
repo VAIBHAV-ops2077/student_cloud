@@ -123,7 +123,13 @@ async function loadStudents() {
     }
 
     const result = await response.json();
-    allStudents = result.data || result;
+    console.log('API Response:', result);
+    
+    // Extract data array from response
+    let studentsData = Array.isArray(result) ? result : (result.data || []);
+    console.log('Students Data:', studentsData);
+    
+    allStudents = studentsData;
     displayStudents(allStudents);
   } catch (error) {
     console.error('Error loading students:', error);
@@ -193,6 +199,13 @@ async function deleteStudent(id) {
 function displayStudents(students) {
   const tbody = document.getElementById('tableBody');
   tbody.innerHTML = '';
+
+  // Ensure students is an array
+  if (!Array.isArray(students)) {
+    console.error('Students is not an array:', students);
+    tbody.innerHTML = '<tr class="loading"><td colspan="7">Error loading students</td></tr>';
+    return;
+  }
 
   if (students.length === 0) {
     tbody.innerHTML = '<tr class="loading"><td colspan="7">No students found</td></tr>';
