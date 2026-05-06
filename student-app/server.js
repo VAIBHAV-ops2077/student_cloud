@@ -322,11 +322,12 @@ const PORT = process.env.PORT || 3000;
 
 initDatabase().then(() => {
   app.listen(PORT, '0.0.0.0', () => {
-  console.log(`
-  Student Management Portal Server
-  Running on http://0.0.0.0:${PORT}
-  `);
-});
+    console.log(`
+╔════════════════════════════════════════╗
+║   Student Management Portal Server     ║
+║   Running on http://0.0.0.0:${PORT}       ║
+╚════════════════════════════════════════╝
+    `);
   });
 }).catch(error => {
   console.error('Failed to start server:', error);
@@ -334,10 +335,10 @@ initDatabase().then(() => {
 });
 
 // Graceful shutdown
-// process.on('SIGINT', () => {
-//   console.log('\n\nShutting down gracefully...');
-//   pool.end((err) => {
-//     if (err) console.error('Error closing connection pool:', err);
-//     process.exit(0);
-//   });
-// });
+process.on('SIGINT', () => {
+  console.log('\n\nShutting down gracefully...');
+  pool.end((err) => {
+    if (err) console.error('Error closing connection pool:', err);
+    process.exit(0);
+  });
+});
