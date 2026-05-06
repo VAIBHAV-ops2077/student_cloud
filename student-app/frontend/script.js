@@ -3,7 +3,7 @@
 // =====================
 
 // Base URL for API calls - Change this if deploying to a different server
-const API_BASE_URL = 'http://54.210.228.227:3000/api';
+const API_BASE_URL = '/api';
 let editingId = null;
 let allStudents = [];
 
@@ -122,7 +122,8 @@ async function loadStudents() {
       throw new Error('Failed to load students');
     }
 
-    allStudents = await response.json();
+    const result = await response.json();
+    allStudents = result.data || result;
     displayStudents(allStudents);
   } catch (error) {
     console.error('Error loading students:', error);
@@ -314,6 +315,7 @@ function showLoadingIndicator(show) {
     emptyState.style.display = 'none';
   } else {
     loadingIndicator.style.display = 'none';
+    tableContainer.style.display = 'block';
   }
 }
 
